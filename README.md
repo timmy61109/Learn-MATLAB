@@ -13,3 +13,16 @@
 自學專區是由出版社所整理資源，此資源包括新舊、難易等所有資源，並代理許多MATLAB相關套件與教學。其中著名的教授也在此公司出版最早有關MATLAB有關的工具，並也在MATLAB公司工作過，因此對MATLAB很熟悉。
 
 MATLAB教學是一位台大生物機械系郭彥甫教授所提供的教學，雖然教學相當完整但使用的MATLAB是MATLAB 2014a，可能使用新版的MATLAB再進階課程會有不同與棄用部份。
+
+# 符號運算
+在 Octave 使用符號運算時，會出現錯誤，此時可以通過安裝新的套件與匯入方法解決。
+
+```matlab
+pkg install -forge symbolic
+```
+
+匯入套件
+
+```matlab
+pkg load symbolic
+```
