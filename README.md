@@ -108,3 +108,59 @@ ans =
 ```
 
 *註： `seed` 為 Octave 舊式產生器，一樣可以使用，但測試新的好像不能使用。
+
+## example 2.8
+
+```matlab
+>> n = factorial(52) / (factorial(52 - 7) * factorial(7))
+n = 1.3378e+08
+```
+
+```matlab
+>> f=factorial(11)/(factorial(11-5)*factorial(5))
+f = 462
+```
+
+```matlab
+>> f=factorial(120)/(factorial(120-60)*factorial(60))
+f = 9.6615e+34
+```
+
+```matlab
+>> f=factorial(15)/(factorial(15-8)*factorial(8))
+f = 6435
+>> n=factorial(10)/(factorial(10-1)*factorial(1))
+n = 10
+>> n*f
+ans = 64350
+>> m = factorial(9)
+m = 362880
+>> n * f * m
+ans = 2.3351e+10
+```
+
+## example 2.9
+
+```matlab
+>> n = factorial(48)/(factorial(48-7)*factorial(7))
+n = 7.3629e+07
+>> m=factorial(52)/(factorial(52-7)*factorial(7))
+m = 1.3378e+08
+>> n / m
+ans = 0.5504
+```
+
+## example 2.10
+
+```matlab
+>> (48/52)^7
+ans = 0.5710
+```
+
+## example 2.15
+
+```matlab
+>> y=factorial(10)/(factorial(2)*factorial(3)*factorial(3)*factorial(2))
+y = 25200
+
+```
