@@ -144,7 +144,7 @@ ans = 2.3351e+10
 ```matlab
 >> n = factorial(48)/(factorial(48-7)*factorial(7))
 n = 7.3629e+07
->> m=factorial(52)/(factorial(52-7)*factorial(7))
+>> m = factorial(52) / (factorial(52 - 7) * factorial(7))
 m = 1.3378e+08
 >> n / m
 ans = 0.5504
@@ -153,14 +153,13 @@ ans = 0.5504
 ## example 2.10
 
 ```matlab
->> (48/52)^7
+>> (48 / 52) ^ 7
 ans = 0.5710
 ```
 
 ## example 2.15
 
 ```matlab
->> y=factorial(10)/(factorial(2)*factorial(3)*factorial(3)*factorial(2))
+>> y = factorial(10) / (factorial(2) * factorial(3) * factorial(3) * factorial(2))
 y = 25200
-
 ```
