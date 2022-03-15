@@ -163,3 +163,46 @@ ans = 0.5710
 >> y = factorial(10) / (factorial(2) * factorial(3) * factorial(3) * factorial(2))
 y = 25200
 ```
+
+## 機率分佈圖
+### 繪製投擲硬幣的機率分佈圖
+透過機率學的理論數值，繪製分佈圖。
+
+```matlab
+for k=0:100
+  p(k + 1) = 0.5 ^ 100 * factorial(100) / (factorial(100 - k) * factorial(k));
+end
+
+bar([0:100], p)
+```
+
+![](assets/README-56048ecc.png)
+
+### example 2.19
+實際模擬投擲硬幣，來計算每次產生的機率，並繪製投擲硬幣的機率分佈圖。
+
+```matlab
+x = rand(100, 600) < 0.5;
+y = sum(x, 1);
+t = 0:100;
+h = hist(y, t);
+bar([0:100], h)
+```
+
+![](assets/README-98bf5b43.png)
+
+### example 2.20
+找出指定數值發生的機率
+
+`ceil` 指天花板，透過此函數，可以將大於整數的浮點數無條件進位，因此得到整數。
+
+使用 `hist` 來找出某集合內指定發生的事件機率。
+
+```matlab
+g = ceil(4 * rand(1, 100));
+t = 1:4;
+x = hist(g, t);
+bar([1:4], x)
+```
+
+![](assets/README-7ab2fb88.png)
