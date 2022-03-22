@@ -206,3 +206,46 @@ bar([1:4], x)
 ```
 
 ![](assets/README-7ab2fb88.png)
+
+# 隨機變數
+## Binomial
+
+```matlab
+p = 0.2;
+n = 60;
+for m=0:n
+  y(m + 1) = binomialpmf(n, p, m);
+end
+bar([0:n], y)
+```
+
+![](assets/README-30bda460.png)
+
+## Geometric
+
+```matlab
+p = 0.2;
+for m = 1:60
+  y(m) = geometricpmf(p, m);
+end
+
+bar(y);
+```
+
+![](assets/README-1e4a1f05.png)
+
+## Pascal
+
+```matlab
+p = 0.2;
+k = 12;
+n = 200;
+y = zeros(1, n);
+for m = k:n
+  y(m) = pascalpmf(k, p, m);
+end
+
+bar([1:n], y);
+```
+
+![](assets/README-1a19f6cc.png)
