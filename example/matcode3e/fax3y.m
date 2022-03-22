@@ -1,0 +1,9 @@
+%fax3y.m
+sx=(1:8)';
+px=[0.15*ones(4,1); ...
+        0.1*ones(4,1)];
+gx=(sx<=5).* ...
+    (10.5*sx-0.5*(sx.^2))...
+   + ((sx>5).*50);
+sy=unique(gx);
+py=finitepmf(gx,px,sy);

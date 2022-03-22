@@ -1,0 +1,9 @@
+%sumx1x2.m
+sx1=(1:25);px1=0.04*ones(1,25);
+sx2=10*(1:10);px2=sx2/550;
+[SX1,SX2]=ndgrid(sx1,sx2);
+[PX1,PX2]=ndgrid(px1,px2);
+SW=SX1+SX2;PW=PX1.*PX2;
+sw=unique(SW);
+pw=finitepmf(SW,PW,sw);
+pmfplot(sw,pw);
