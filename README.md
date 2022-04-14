@@ -249,3 +249,184 @@ bar([1:n], y);
 ```
 
 ![](assets/README-1a19f6cc.png)
+
+# 離散機率
+## Poisson
+「卜瓦松分布」(Poisson distribution)又稱Poisson分布、泊松分布、布瓦松分布、布阿松分布、普阿松分布、波以松分布、卜氏分布、帕松小數法則，是一種統計與機率學裡常見到的離散機率分布，由法國數學家西莫恩·德尼·卜瓦松在1838年時發表。
+
+Poisson 過程有三個基本特性：
+
+1. 在一個短時間區間 $\Delta t$ 內，發生一次事件的機率與 $\Delta t$ 成正比： $\lambda \Delta t$。
+2. 在短時間內發生兩次以上的機率可以忽略。
+3. 在不重疊的時間段落裡，事件各自發生的次數是獨立的。
+
+```math
+b(x; n, p) = \frac {n!}{x!(n-x)!}p^x(1-p)^{n-x}
+```
+
+假定某機關的總機在一個短時間 $\triangle t$ 內會接到一次電話的機率 $p$ 與 $\triangle t$ 成正比： $p=\alpha\triangle t$，$\alpha$ 為一常數。又假定在此短時間內接到多於一次電話的機率微乎其微，可以略去不計。那麼在時間 $t$ 內，會接到 $x$ 次電話的機率分布為何？
+
+我們可以把 $t$ 分成 $n$ 小段，每小段長為 $\triangle t=\frac{t}{n}$。整個問題可看成為：
+
+> 在每個 $\triangle t$ 時間內，我們做了一次試驗，其成功（接到電話）的機率為 $p$ 。如此做了 $n$ 次，那麼成功了 $x$ 次的機率為何？所以我們要的機率分布正是二項分布 $b(x;n,p)$ 。令 $\lambda = \alpha t = n\alpha\triangle t = np$ ，則
+
+```math
+\begin{equation}
+\begin{split}
+&b(x;n,p)\\
+& = \frac{n!}{x!(n-x)!}p^x(1-p)^{n-x}\\
+& = \frac{n(n -1)(n -2)\cdots(n - x + 1)}{x!}(\frac{\lambda}{n})^x(1-\frac{\lambda}{n})^{n-x} \\
+& = (1 - \frac{1}{n})(1 - \frac{2}{n})\cdots(1 - \frac{x - 1}{n})\frac{1}{x!}\lambda^{x}((1 - \frac{\lambda}{n})^{-\frac{n}{\lambda}})^{-\lambda}(1-\frac{\lambda}{n})^{-x}
+\end{split}
+\end{equation}
+```
+
+當 t 保持不變（亦即 λ 不變），而讓 $n\rightarrow\infty$ ( $4t \rightarrow 0$)，則
+
+```math
+\begin{equation}
+\begin{split}
+& (1 - \frac{1}{n})(1-\frac{2}{n})\cdots(1 - \frac{x-1}{n})\rightarrow 1 \\
+& (1 - \frac{\lambda}{n})^{- \frac{n}{\lambda}} \rightarrow e \\
+& (1-\frac{\lambda}{n})^{-x}\rightarrow 1
+\end{split}
+\end{equation}
+```
+
+所以
+
+$b(x;n,p) \rightarrow \frac{\lambda^xe^{-\lambda}}{x!}$ (以 $p(x;\lambda)$ 表之，此處的 $p$ 代表 Poisson)
+
+因為
+
+```math
+\begin{equation}
+\begin{split}
+\sum_{x=0}^{\infty}p(x;\lambda)=e^{-\lambda}\sum_{x=0}^{\infty}\frac{\lambda^x}{x!}=e^{-\lambda}e^{\lambda}=1
+\end{split}
+\end{equation}
+```
+
+所以 $p(x;\lambda)$ 的確是個機率分布(各種可能的機率之和等於 $1$ )。
+
+這就是說，在時間 $t$ 內，接到 $x$ 次電話的機率為 $p(x;\lambda)$ 。這是以 $\lambda$ 為參數的 Poisson 分布，而 $\lambda=\alpha t$ 是在時間 $t$ 內所期望接到的電話數。
+
+### 範例
+
+```matlab
+a = 0.5;
+x = 5;
+for i = 0:x
+  y(i+1) = poissonpmf(a, i)
+end
+
+e = 0;
+for i = 0:x
+  y(i + 1) = poissonpmf(a, i);
+  e = e + i * y(i + 1);
+end
+```
+
+輸出
+
+```matlab
+>> e
+e = 0.4999
+```
+
+
+
+```matlab
+a = 1;
+x = 10;
+for i = 0:x
+  y(i + 1) = poissonpmf(a, i)
+end
+
+e = 0;
+for i = 0:x
+y(i+1) = poissonpmf(a, i);
+e = e + i * y(i + 1);
+end
+```
+
+輸出
+
+```matlab
+> e
+e  =  1.0000
+```
+
+
+
+```
+a = 5
+x = 50
+for i = 0:x
+y(i+1) = poissonpmf(a,i)
+end
+e = 0;
+for i = 0:x
+y(i+1) = poissonpmf(a,i);
+e = e+i*y(i+1);
+end
+```
+
+```
+a = 10;
+x = 100;
+for i = 0:x
+y(i+1) = poissonpmf(a,i)
+end
+e = 0;
+for i = 0:x
+y(i+1) = poissonpmf(a,i);
+e = e+i*y(i+1);
+end
+e  =
+   10.0000
+binomial
+n = 100;
+p = 0.2;
+e = 0;
+for i = 0:n
+y(i+1) = binomialpmf(n,p,i);
+e = e+i*y(i+1);
+end
+e
+e  =
+   20.0000
+>>n*p
+ans  =
+    20
+pascal
+k = 10;
+p = 0.2;
+x = 200;
+e = 0;
+for i = 0:200
+y(i+1) = pascalpmf(k,p,i);
+e = e+i*y(i+1);
+end
+e
+e  =
+   50.0000
+>> k/p
+ans  =
+    50
+duniform
+k = 11;
+l = 30;
+e = 0;
+x = 100;
+for i = 0:x
+y(i+1) = duniformpmf(k,l,i);
+e = e+i*y(i+1);
+end
+e
+e  =
+   20.5000
+>> (k+l)/2
+ans  =
+   20.5000
+```
