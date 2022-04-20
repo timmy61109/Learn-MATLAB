@@ -311,7 +311,7 @@ $b(x;n,p) \rightarrow \frac{\lambda^xe^{-\lambda}}{x!}$ (以 $p(x;\lambda)$ 表�
 
 這就是說，在時間 $t$ 內，接到 $x$ 次電話的機率為 $p(x;\lambda)$ 。這是以 $\lambda$ 為參數的 Poisson 分布，而 $\lambda=\alpha t$ 是在時間 $t$ 內所期望接到的電話數。
 
-### 範例
+### example
 
 ```matlab
 a = 0.5;
@@ -334,7 +334,7 @@ end
 e = 0.4999
 ```
 
-
+### example
 
 ```matlab
 a = 1;
@@ -345,88 +345,120 @@ end
 
 e = 0;
 for i = 0:x
-y(i+1) = poissonpmf(a, i);
-e = e + i * y(i + 1);
+  y(i+1) = poissonpmf(a, i);
+  e = e + i * y(i + 1);
 end
 ```
 
 輸出
 
 ```matlab
-> e
-e  =  1.0000
+>> e
+e = 1.0000
 ```
 
+### example
 
-
-```
+```matlab
 a = 5
 x = 50
 for i = 0:x
-y(i+1) = poissonpmf(a,i)
+  y(i + 1) = poissonpmf(a, i)
 end
 e = 0;
 for i = 0:x
-y(i+1) = poissonpmf(a,i);
-e = e+i*y(i+1);
+  y(i + 1) = poissonpmf(a, i);
+  e = e + i * y(i + 1);
 end
 ```
 
+輸出
+
+```matlab
+>> e
+e = 5.0000
 ```
+
+### example
+
+```matlab
 a = 10;
 x = 100;
 for i = 0:x
-y(i+1) = poissonpmf(a,i)
+  y(i + 1) = poissonpmf(a, i);
 end
 e = 0;
 for i = 0:x
-y(i+1) = poissonpmf(a,i);
-e = e+i*y(i+1);
+  y(i + 1) = poissonpmf(a, i);
+  e = e + i * y(i + 1);
 end
-e  =
-   10.0000
-binomial
+```
+
+輸出
+
+```matlab
+>> e
+e = 10.000
+```
+
+## binomial
+二項分佈
+
+### example
+
+```matlab
 n = 100;
 p = 0.2;
 e = 0;
 for i = 0:n
-y(i+1) = binomialpmf(n,p,i);
-e = e+i*y(i+1);
+  y(i + 1) = binomialpmf(n, p, i);
+  e = e + i * y(i + 1);
 end
-e
-e  =
-   20.0000
->>n*p
-ans  =
-    20
-pascal
+```
+
+```matlab
+>> e
+e = 20.000
+>> n * p
+ans = 20
+```
+
+## pascal
+
+```matlab
 k = 10;
 p = 0.2;
 x = 200;
 e = 0;
 for i = 0:200
-y(i+1) = pascalpmf(k,p,i);
-e = e+i*y(i+1);
+  y(i + 1) = pascalpmf(k, p, i);
+  e = e + i * y(i + 1);
 end
-e
-e  =
-   50.0000
->> k/p
-ans  =
-    50
-duniform
+```
+
+```
+>> e
+e = 50.000
+>> k / p
+ans = 50
+```
+
+## duniform
+
+```matlab
 k = 11;
 l = 30;
 e = 0;
 x = 100;
 for i = 0:x
-y(i+1) = duniformpmf(k,l,i);
-e = e+i*y(i+1);
+  y(i+1) = duniformpmf(k,l,i);
+  e = e + i * y(i + 1);
 end
-e
-e  =
-   20.5000
->> (k+l)/2
-ans  =
-   20.5000
+```
+
+```
+>> e
+e = 20.500
+>> (k + l) / 2
+ans = 20.500
 ```
