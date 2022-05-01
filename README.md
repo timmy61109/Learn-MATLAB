@@ -462,3 +462,135 @@ e = 20.500
 >> (k + l) / 2
 ans = 20.500
 ```
+
+# 期望值
+
+## example 1 poisson
+
+```matlab
+m = 10000;
+a = 10;
+n = 100;
+sx = [0:n];
+
+px = poissonpmf(a, sx)';
+
+x = poissonrv(a, m);
+
+esx = sum(px .* sx)
+
+vsx = sum(px .* (sx - esx) .^ 2)
+
+ex = sum(x) / length(x)
+
+vx = sum((x - ex) .^ 2) / length(x)
+```
+
+```matlab
+>> esx
+esx = 10.000
+>> vsx
+vsx = 10.000
+>> ex
+ex = 9.9833
+>> vx
+vx = 9.9240
+```
+
+## example 2 binomial
+
+```matlab
+m = 10000;
+n = 100;
+p = 0.2;
+sx = [0:n];
+
+px = binomialpmf(n, p, sx)';
+
+x = binomialrv(n, p, m);
+
+esx = sum(px .* sx)
+
+vsx = sum(px .* (sx - esx) .^ 2)
+
+ex = sum(x) / length(x)
+
+vx = sum((x - ex) .^ 2) / length(x)
+```
+
+```matlab
+>> esx
+esx = 20.000
+>> vsx
+vsx = 16.000
+>> ex
+ex = 20.014
+>> vx
+vx = 16.183
+```
+
+## example 3 pascal
+
+```matlab
+m = 10000;
+k = 10;
+n = 250;
+p = 0.2;
+sx = [0:n];
+
+px = pascalpmf(k, p, sx)';
+
+x = pascalrv(k, p, m);
+
+esx = sum(px .* sx)
+
+vsx = sum(px .* (sx - esx) .^ 2)
+
+ex = sum(x) / length(x)
+
+vx = sum((x - ex) .^ 2) / length(x)
+```
+
+```matlab
+>> esx
+esx = 50.000
+>> vsx
+vsx = 200.000
+>> ex
+ex = 50.121
+>> vx
+vx = 198.12
+```
+
+## example 4 duniform
+
+```
+m = 10000;
+k = 11;
+n = 203;
+l = 30;
+sx = [0:n];
+
+px = duniformpmf(k, l, sx)';
+
+x = duniformrv(k, l, m);
+
+esx = sum(px .* sx)
+
+vsx = sum(px .* (sx - esx) .^ 2)
+
+ex = sum(x) / length(x)
+
+vx = sum((x - ex) .^ 2) / length(x)
+```
+
+```matlab
+>> esx
+esx = 20.500
+>> vsx
+vsx = 33.250
+>> ex
+ex = 20.423
+>> vx
+vx = 33.285
+```
